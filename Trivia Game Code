@@ -1,0 +1,119 @@
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+failedImg = mpimg.imread("IMG/failed.jpg")
+congratsImg = mpimg.imread("IMG/congratulations.jpg")
+    
+guesses=5
+name = input("Hi! What is your name?  ")
+print("Hi " + name + "!" + "This is a trivia game, your objective is to make it through all of the questions without loosing all of your lives.")
+print("You start with 5 lives, everytime you get a question wrong, 2 points are deducted from your total score")
+print("When you get a question right, you gain 1 life - good luck")
+if guesses <= 0: 
+    print("You have failed the trivia - lost all lives")
+invalid_input = True
+Done = [0,0,0,0,0]
+while invalid_input:
+    total = 0
+    for i in range(5):
+        if Done[i] == 1:
+            total +=1
+    if total == 5:
+        break
+    guesses = str(guesses)
+    print("Remaining lives = " + (guesses))
+    guesses = int(guesses)
+    listA = ["(a) general", "(b) entertainment", "(c) sports", "(d) geography", "(e) science"]
+    print("Choose your category of trivia: ", end =" ")
+    for i in range(5):
+        if Done[i] == 0:
+            print(listA[i] + ",", end =" ")
+    listA = str(listA)
+    category = input()
+    if category == "a":  #general
+        Done[0] = 1
+        gean = input("What is cynophobia? (a)Fear of bicycles (b) Fear of nails (c) Fear of snakes (d) Fear of dogs ")
+        if gean == "d":
+            print("That is correct!")
+            guesses +=1
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+        else:
+            print ("Incorrect - the correct answer is d")
+            guesses -=2
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+    elif category == "b":    #entertainment
+        Done[1] = 1
+        enan = input("In Looney Toons, what is Sylvester the cat's obsession? (a)Birds (b)Fish (c)Mice (d)Rabbits")
+        if enan == "a":
+            print("That is correct!")
+            guesses +=1
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+        else:
+            print ("Incorrect - the correct answer is a")
+            guesses -=2
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+    elif category == "c":   #sports
+        Done[2] = 1
+        span = input("Who has won more tennis grand slam titles, Venus Williams or Serena Williams? (a)Venus (b)Serena (c)Liam")
+        if span == "b":
+            print("That is correct!")
+            guesses +=1
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+        else:
+            print ("Incorrect - the correct answer is b")
+            guesses -=2
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+    elif category == "d":  #geography
+        Done[3] = 1
+        gean = input("What is Earth's largest continent? (a)Ottawa (b)North America (c)Asia (d) Africa")
+        if gean == "c":
+            print("That is correct!")
+            guesses +=1
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+        else:
+            print ("Incorrect - the correct answer is c")
+            guesses -=2
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+    elif category == "e":   #science
+        Done[4] = 1
+        scan = input("How many teeth does an adult human have? (a)6 (b)40 (c)26 (d) 32")
+        if scan == "d":
+            print("That is correct!")
+            guesses +=1
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+        else:
+            print ("Incorrect - the correct answer is d")
+            guesses -=2
+            if guesses <= 0: 
+                print("You have failed the trivia - lost all lives")
+                break
+    else:
+        print ("Sorry, you must have spelt that wrong!")
+if total == 5:
+    print("Congratulations your have completed the trivia!")
+    plt.imshow(congratsImg)
+    plt.axis('off')
+    plt.show()
+else:
+    plt.imshow(failedImg)
+    plt.axis('off')
+    plt.show()
+
+    
